@@ -1,9 +1,10 @@
 {
-  "name": "Copy Selection",
-  "description": "Copy selected text from the current page.",
-  "version": "1.0",
+  "name": "Copy My Flight",
+  "description": "Copy formatted flight details from Google Flights or selected text.",
+  "version": "1.1",
   "manifest_version": 3,
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "clipboardWrite"],
+  "host_permissions": ["https://www.google.com/travel/flights/*"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Copy Selection"
@@ -12,6 +13,11 @@
     {
       "matches": ["<all_urls>"],
       "js": ["content_script.js"]
+    },
+    {
+      "matches": ["https://www.google.com/travel/flights/*"],
+      "js": ["flight_copy.js"],
+      "run_at": "document_idle"
     }
   ]
 }
